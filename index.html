@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/beige.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+				 <a href="https://spring.io/">
+				  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Spring_Framework_Logo_2018.svg/640px-Spring_Framework_Logo_2018.svg.png" alt="spring boot" style="height: 140px; margin: 0 auto 4rem auto; background: transparent;" class="demo-logo">
+				 </a>
+				 <h3>Spring Boot et Spring Cloud Workshop</h3>
+				 <p>
+				  <small>Kamel NAJJAR</small>
+				 </p>
+				 <p>
+					 <small>CKA, CKAD, CKS, AWS, CJE, C100DEV, New Relic</small>
+				 </p>
+				 <p>
+					 <small> <a href="https://github.com/kamel2k">Github</a> and <a href="https://twitter.com/kamel2k">Twitter</a></small>
+				 </p>
+
+				</section>
+				<section>
+					<h2>Plan de la formation</h2>
+					<ul>
+						<li>Rappel sur les applications monolithiques</li>
+						<li>Concepts sur l'architecture modulaire ou orienté composant</li>
+						<li>Présentation de spring boot et spring cloud</li>
+						<li>Centralisation de la configuration</li>
+						<li>Service discovery</li>
+						<li>Service de Routage</li>
+						<li>Deploiement des modules applicatifs</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Ressources de la formation</h2>
+					<p>Slides de la formation</p>
+					<pre data-id="code-animation"><code class="hljs" data-trim>
+						http://kamel2k.github.io
+					</code></pre>
+
+					<p>Ateliers de développement</p>
+					<pre data-id="code-animation"><code class="hljs" data-trim>
+						http://kamel2k.github.io
+					</code></pre>
+
+					<p>Code Source</p>
+					<pre data-id="code-animation"><code class="hljs" data-trim>
+						https://github.com/kamel2k/modern-application-workshop
+					</code></pre>
+
+				</section>
+
+				<section>
+					<h2>Rappel sur les applications monolithiques</h2>
+				</section>
+
+				<section>
+					<h2>Monolith Hell</h2>
+					<ul>
+						<li>Cycle de dév complexe: time to market élevé</li>
+						<li>1 seul processus système</li>
+						<ul>
+							<li>Single Point Of Failure</li>
+							<li>Conflit des besoins en ressources (RAM/CPU)</li>
+							<li>Pas de scalabilité unitaire des composants</li>
+						</ul>
+						<li>Unité de déploiement unique:</li>
+						<li>1 grosse archive (war|zip)</li>
+						<ul>
+							<li>Tps de démarrage long</li>
+							<li>Difficile d’adopter une nouvelle technologie</li>
+						</ul>
+					</ul>
+				</section>
+				<section>
+				  <img src="images/monolith.png" alt="application monolithique" style="height: 700px; margin: 0 auto 0rem auto; background: transparent;" class="demo-logo">
+				</section>
+
+				<section>
+					<h2>App monolitique vs App modulaire msrv</h2>
+					<img src="images/monolith-vs-msrv.png" alt="application monolithique" style="height: 500px; margin: 0 auto 0rem auto; background: transparent;" class="demo-logo">
+					<p>
+ 				  <small>Source: intellias.com</small>
+ 				 </p>
+			 </section>
+
+			 <section>
+				 <h2>Mono vs Modulaire</h2>
+				 <ul>
+					 <li>Une application monolithique classique embarque toutes ses fonctionnalité dans un seul processus</li>
+					 <li>a réponse à la montée en charge s’effectue en dupliquant ce monolithe sur plusieurs serveurs</li>
+				 </ul>
+			 	 </br>
+				 <p>vs</p>
+				 <ul>
+					 <li>Une application développée sous forme de modules ou composants indépendants pour former un service distinct</li>
+					 <li>Les services sont distribués sur les serveurs et la réponse à la montée en charge concerne les services qui le nécessitent</li>
+				 </ul>
+			</section>
+
+			<section>
+				<h2>Caractéristiques des applications modulaires</h2>
+				<img src="images/msrv-caract.png" alt="caracteristiques des applications modulaires" style="height: 350px; margin: 0 auto 0rem auto; background: transparent;" class="demo-logo">
+		 </section>
+
+		 <section>
+			 <h2>Apport des applications modulaires</h2>
+			 <img src="images/msrv-avantages.png" alt="avantage des applications modulaires" style="height: 350px; margin: 0 auto 0rem auto; background: transparent;" class="demo-logo">
+		</section>
+
+		<section>
+			<h2>Présentation de l'étude de cas</h2>
+			<img src="images/architecture.png" alt="architecture de l'application" style="height: 500px; margin: 0 auto 0rem auto; background: transparent;" class="demo-logo">
+	 </section>
+
+	 <section>
+		 <h2>Patterns de développement d'applications modernes</h2>
+		 <ul>
+			 <li>Configuration externalisée</li>
+			 <li>Découverte de services</li>
+			 <li>Registre des services</li>
+			 <li>Passerelle API</li>
+			 <li>Métriques d'application</li>
+			 <li>Instance de service par conteneur</li>
+		 </ul>
+	 </section>
+
+	 <section>
+		 <h2>Présentation des différents frameworks Spring/Cloud</h2>
+		 <ul>
+			 <li>Spring Boot</li>
+			 <li>Spring Web</li>
+			 <li>Spring Data JPA</li>
+			 <li>Spring Boot Actuator</li>
+			 <li>Spring Boot Admin</li>
+			 <li>Spring Cloud Config</li>
+			 <li>Spring Cloud Discovery</li>
+			 <li>Spring Cloud Gateway</li>
+			 <li>Swagger Openapi</li>
+		 </ul>
+	 </section>
+
+				<section>
+					<h2>Lab 1 : Mise en place de la plateforme de développement</h2>
+				</section>
+
+				<section>
+					<h2>Lab 2 : Prise en main de Spring Boot pour le développement des applications modulaires</h2>
+				</section>
+
+				<section>
+		 		 <h2>Pourquoi Spring Boot ?</h2>
+		 		 <ul>
+		 			 <li>Créer des applications Spring autonomes</li>
+		 			 <li>Tomcat ou Jetty sont intégrés directement (pas besoin de déployer des fichiers WAR)</li>
+		 			 <li>Configuration simplifiée avec les "starters"</li>
+		 			 <li>Fournit des fonctionnalités prêtes pour la production telles que des métriques</li>
+		 			 <li>Pas de génération de code</li>
+		 			 <li>Aucune exigence de configuration XML</li>
+		 		 </ul>
+		 	 </section>
+
+			 <section>
+				 <h2>Lab 3 : Centralisation et Externalisation de la configuration avec Spring Cloud Config</h2>
+			 </section>
+
+			 <section>
+				<h2>Pourquoi Spring Cloud Config ?</h2>
+				<ul>
+					<li>La configuration de tous les modules applicatifs au même endroit</li>
+					<li>Le module applicatif n'intègre pas de fichiers de configuration (pas de propriétes datasource, etc)</li>
+					<li>Séparation du code source du module applicatif de la configuration</li>
+					<li>Gestion efficace des environnements (recette, production, etc)</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Lab 4 : Enregistrement et découverte de services avec Spring Cloud Discovery</h2>
+			</section>
+
+			<section>
+			 <h2>Pourquoi Spring Cloud Discovery ?</h2>
+			 <ul>
+				 <li>Enregistrement des modules applicatifs dans un annuaire de services</li>
+				 <li>Facilite la communication entre les modules applicatifs</li>
+				 <li>Prise en compte de la scalabilité pour les modules applicatifs avec le mécanisme de loadbalanceur</li>
+			 </ul>
+		 </section>
+
+		 <section>
+			 <h2>Lab 5 : Routage des services avec Spring Cloud Gateway</h2>
+		 </section>
+
+		 <section>
+			<h2>Pourquoi Spring Cloud Gateway ?</h2>
+			<ul>
+				<li>Point d'entrée unique aux modules applicatifs</li>
+				<li>Les appels vers la Gateway sont routés vers le module cible</li>
+				<li>Assurer la sécurité et le monitoring des modules applicatifs</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Lab 6 : Monitoring des modules applicatifs avec Spring Boot Admin</h2>
+		</section>
+
+		<section>
+		 <h2>Pourquoi Spring Boot Admin ?</h2>
+		 <ul>
+			 <li>Gestion et monitoring des modules avec une interface WEB</li>
+			 <li>Se base sur Actuator</li>
+			 <li>Enregistrement des modules dans Boot Admin</li>
+		 </ul>
+	 </section>
+
+	 <section>
+		 <h2>Lab 7 : Containerisation des modules applicatifs</h2>
+	 </section>
+
+	 <section>
+		<h2>Pourquoi Docker ?</h2>
+		<ul>
+			<li>Facilite la portabilité de l'application Gainde</li>
+			<li>Isolation de chaque module applicatif</li>
+			<li>Facilite les déploiements</li>
+		</ul>
+	</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
